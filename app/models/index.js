@@ -1,4 +1,3 @@
-//models/index.js
 import Sequelize from "sequelize";
 import config from "../config/db.config.js";
 import User from "./user.model.js";
@@ -6,6 +5,7 @@ import Role from "./role.model.js";
 import OrdenCompra from "./ordenCompra.model.js";
 import DetalleOrdenCompra from "./detalleOrdenCompra.model.js";
 
+// Configurar Sequelize con SSL
 const sequelize = new Sequelize(
   config.DB,
   config.USER,
@@ -13,7 +13,8 @@ const sequelize = new Sequelize(
   {
     host: config.HOST,
     dialect: config.dialect,
-    operatorsAliases: false,
+    port: config.port,
+    dialectOptions: config.dialectOptions, // ⚠️ Asegura la conexión SSL
     pool: {
       max: config.pool.max,
       min: config.pool.min,
@@ -22,10 +23,12 @@ const sequelize = new Sequelize(
     }
   }
 );
+
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
 db.user = User(sequelize, Sequelize);
 db.role = Role(sequelize, Sequelize);
 db.ordenCompra = OrdenCompra(sequelize, Sequelize);
@@ -49,17 +52,18 @@ db.user.hasMany(db.ordenCompra, {
   foreignKey: "userId",
   as: "ordenes"
 });
-// Relación inversa
+
 db.ordenCompra.belongsTo(db.user, {
   foreignKey: "userId",
   as: "creador"
 });
+
 // Relación 1:N entre OrdenCompra y DetalleOrdenCompra
 db.ordenCompra.hasMany(db.detalleOrdenCompra, {
   foreignKey: "NroOrdenC",
   as: "detalles"
 });
-// Relación inversa
+
 db.detalleOrdenCompra.belongsTo(db.ordenCompra, {
   foreignKey: "NroOrdenC",
   as: "orden"
