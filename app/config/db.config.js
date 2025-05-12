@@ -1,4 +1,7 @@
 // app/config/db.config.js
+
+
+// app/config/db.config.js
 export default {
   HOST: "dpg-d0gn2p3e5dus73agqsog-a.oregon-postgres.render.com", // o usa el hostname de Render
   USER: "baselab08_user", // usuario de PostgreSQL
@@ -6,6 +9,9 @@ export default {
   DB: "baselab08",
   dialect: "postgres",
   port: 5432, // puerto estándar de PostgreSQL
+  ssl: {
+    rejectUnauthorized: false // Desactivar la verificación del certificado SSL
+  },
   pool: {
     max: 5,
     min: 0,
