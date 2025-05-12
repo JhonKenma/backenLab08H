@@ -5,7 +5,7 @@ export default {
   PASSWORD: "a33VCjV07m7h9KVYy9t31Gex011QYc34",
   DB: "baselab08",
   dialect: "postgres",
-  PORT: 5432, // puerto estándar de PostgreSQL
+  port: 5432, // puerto estándar de PostgreSQL
   pool: {
     max: 5,
     min: 0,
