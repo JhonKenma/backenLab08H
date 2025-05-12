@@ -12,10 +12,11 @@ export default {
     acquire: 30000,
     idle: 10000
   },
-  dialectOptions: {
-    ssl: {
-      require: true, // Requiere la conexión SSL
-      rejectUnauthorized: false, // Opcional, deshabilita la verificación del certificado (puedes quitarlo si confías en el certificado)
-    }
+dialectOptions: {
+  ssl: {
+    require: true,
+    rejectUnauthorized: false
   }
+}
+
 };
