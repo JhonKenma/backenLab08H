@@ -1,7 +1,4 @@
 // app/config/db.config.js
-
-
-// app/config/db.config.js
 export default {
   HOST: "dpg-d0gn2p3e5dus73agqsog-a.oregon-postgres.render.com", // o usa el hostname de Render
   USER: "baselab08_user", // usuario de PostgreSQL
